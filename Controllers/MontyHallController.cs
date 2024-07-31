@@ -15,11 +15,24 @@ namespace MontyHallApi.Controllers
             _simulationService = simulationService;
         }
 
+        // endpoint for the game 
         [HttpPost("game")]
-        public IActionResult Simulate([FromBody] MontyHallRequest request)
+        public IActionResult Game([FromBody] MontyHallRequest request)
         {
+            // Log request for debugging
+            Console.WriteLine($"Game Request - InitialSelection: {request.InitialSelection}, SwitchDoor: {request.SwitchDoor}");
+
             var result = _simulationService.Simulate(request.InitialSelection, request.SwitchDoor);
             return Ok(result);
+        }
+
+        // endpoint for multiple simulations
+        [HttpPost("simulate")]
+        public IActionResult Simulate([FromBody] MontyHallRequest request)
+        {
+
+            var results = _simulationService.SimulateMultiple(request.NumberOfSimulations, request.InitialSelection, request.SwitchDoor);
+            return Ok(results);
         }
 
         [HttpGet("test")]
@@ -28,5 +41,4 @@ namespace MontyHallApi.Controllers
             return Ok("If you can see this message, Backend is running...!");
         }
     }
-
 }
