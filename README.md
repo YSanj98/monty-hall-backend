@@ -18,7 +18,6 @@
 git clone https://github.com/YSanj98/monty-hall-backend.git
 ```
 - navigate to the root directory of the cloned repository.
-- install npm packages using the `npm install` command.
 - restore the necessary packages using `dotnet restore` command.
 - run the application using `dotnet run` command.
 - open the browser and navigate to `https://localhost:5193/swagger/index.html` to see the API documentation.
