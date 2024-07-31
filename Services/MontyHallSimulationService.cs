@@ -1,5 +1,6 @@
 ﻿using MontyHallApi.Models;
 using System;
+using System.Collections.Generic;
 
 namespace MontyHallApi.Services
 {
@@ -39,6 +40,19 @@ namespace MontyHallApi.Services
                 FinalSelection = finalSelection,
                 PrizeDoor = prizeDoor
             };
+        }
+
+        public IEnumerable<MontyHallResult> SimulateMultiple(int numberOfSimulations, int initialSelection, bool switchDoor)
+        {
+
+            List<MontyHallResult> results = new List<MontyHallResult>();
+
+            for (int i = 0; i < numberOfSimulations; i++)
+            {
+                results.Add(Simulate(initialSelection, switchDoor));
+            }
+
+            return results;
         }
     }
 }
